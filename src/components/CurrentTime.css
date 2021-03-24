@@ -3,5 +3,7 @@
   font-size: 2rem;
   text-align: center;
   padding: 10px;
-  background-color: snow;
+  
+  background-color: lightslategray;
+  color: snow;
 }
