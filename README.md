@@ -1,0 +1,1 @@
+A simple React app to manage a live event schedule.
