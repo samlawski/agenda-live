@@ -1,15 +1,13 @@
-import React, {Component} from "react"
+import React from "react"
 import {hot} from "react-hot-loader"
-import "./App.css"
 
-class App extends Component {
-  render(){
-    return (
-      <div className="App">
-        <h1>Hello World! 👋</h1>
-      </div>
-    )
-  }
-}
+import "./App.css"
+import CurrentTime from "./components/CurrentTime"
+
+const App = props => (
+  <div className="App">
+    <CurrentTime />
+  </div>
+)
 
 export default hot(module)(App)
