@@ -25,6 +25,11 @@ const App = props => {
       id: "123",
       durationInMinutes: 15,
       description: "Ending"
+    },
+    {
+      id: "23",
+      durationInMinutes: 0,
+      description: ""
     }
   ]))
 
@@ -44,13 +49,20 @@ const App = props => {
       return item
     })
   )
+
+  const _addMinutesToTime = (timeAsString, minutes) => moment(timeAsString, "HH:mm").add(minutes, "minutes").format("HH:mm")
+
   const itemTime = currentItem => {
     const currentItemIndex = items.findIndex(item => item.id == currentItem.id)
     const itemsUpToTheCurrent = items.slice(0, currentItemIndex)
     const sumOfMinutes = itemsUpToTheCurrent.reduce((currentSum, item) => currentSum + item.durationInMinutes, 0)
 
-    return moment(startTime, "HH:mm").add(sumOfMinutes, "minutes").format("HH:mm")
+    return _addMinutesToTime(startTime, sumOfMinutes)
   }
+  const endTime = () => _addMinutesToTime(
+    startTime,
+    items.reduce((currentSum, item) => currentSum + item.durationInMinutes, 0)
+  )
 
 
   return (
@@ -70,6 +82,12 @@ const App = props => {
           <button onClick={() => handleRemoveItem(item)}>x</button>
         </li>
       ))}
+
+      <button>add item</button>
+
+      <div>
+        End time: {endTime()}
+      </div>
 
     </div>
   )
