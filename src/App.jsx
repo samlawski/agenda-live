@@ -46,8 +46,8 @@ const App = props => {
   )
   const itemTime = currentItem => {
     const currentItemIndex = items.findIndex(item => item.id == currentItem.id)
-    const itemsUpToAndIncludingCurrent = items.slice(0, currentItemIndex + 1)
-    const sumOfMinutes = itemsUpToAndIncludingCurrent.reduce((currentSum, item) => currentSum + item.durationInMinutes, 0)
+    const itemsUpToTheCurrent = items.slice(0, currentItemIndex)
+    const sumOfMinutes = itemsUpToTheCurrent.reduce((currentSum, item) => currentSum + item.durationInMinutes, 0)
 
     return moment(startTime, "HH:mm").add(sumOfMinutes, "minutes").format("HH:mm")
   }
