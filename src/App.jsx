@@ -2,6 +2,7 @@ import React, {
   useState
 } from "react"
 import {hot} from "react-hot-loader"
+import moment from "moment"
 
 import "./App.css"
 import CurrentTime from "./components/CurrentTime"
@@ -43,6 +44,13 @@ const App = props => {
       return item
     })
   )
+  const itemTime = currentItem => {
+    const currentItemIndex = items.findIndex(item => item.id == currentItem.id)
+    const itemsUpToAndIncludingCurrent = items.slice(0, currentItemIndex + 1)
+    const sumOfMinutes = itemsUpToAndIncludingCurrent.reduce((currentSum, item) => currentSum + item.durationInMinutes, 0)
+
+    return moment(startTime, "HH:mm").add(sumOfMinutes, "minutes").format("HH:mm")
+  }
 
 
   return (
@@ -56,7 +64,7 @@ const App = props => {
 
       {items.map(item => (
         <li key={item.id}>
-          <span>12:45</span>
+          <span>{itemTime(item)}</span>
           <input type="number" onChange={event => handleDurationChange(event.target.value, item)} value={item.durationInMinutes} />
           <input type="text" onChange={event => handleDescriptionChange(event.target.value, item)} value={item.description} />
           <button onClick={() => handleRemoveItem(item)}>x</button>
