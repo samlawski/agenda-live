@@ -31,9 +31,19 @@ const App = props => {
   const handleStartTimeInputChange = event => setStartTime(event.target.value)
 
   const handleRemoveItem = removedItem => setItems(items.filter(item => item.id !== removedItem.id))
-  const handleDurationChange = changedItem => setItems()
-  const handleDescriptionChange = changedItem => setItems()
-  
+  const handleDurationChange = (changedValue, changedItem) => setItems(
+    items.map(item => {
+      if(item.id == changedItem.id) item.durationInMinutes = changedValue
+      return item
+    })
+  )
+  const handleDescriptionChange = (changedValue, changedItem) => setItems(
+    items.map(item => {
+      if(item.id == changedItem.id) item.description = changedValue
+      return item
+    })
+  )
+
 
   return (
     <div className="App">
@@ -47,8 +57,8 @@ const App = props => {
       {items.map(item => (
         <li key={item.id}>
           <span>12:45</span>
-          <input type="number" onChange={handleDurationChange} value={item.durationInMinutes} />
-          <input type="text" onChange={handleDescriptionChange} value={item.description} />
+          <input type="number" onChange={event => handleDurationChange(event.target.value, item)} value={item.durationInMinutes} />
+          <input type="text" onChange={event => handleDescriptionChange(event.target.value, item)} value={item.description} />
           <button onClick={() => handleRemoveItem(item)}>x</button>
         </li>
       ))}
