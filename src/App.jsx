@@ -12,13 +12,34 @@ const App = props => {
     startTime: new Date().toTimeString().substring(0,5),
     items: [
       {
+        id: "sd",
         durationInMinutes: 5,
         description: "Welcome"
+      },
+      {
+        id: "kuu",
+        durationInMinutes: 10,
+        description: "☕️ Break"
       }
     ]
   }))
 
   const handleStartTimeInputChange = event => setState(state => ({...state, startTime: event.target.value }))
+
+
+  const handleRemoveItem = removedItem => setState(state => ({
+    ...state,
+    items: state.items.filter(item => item.description !== removedItem.description)
+  }))
+
+  const handleDurationChange = changedItem => setState(state => ({
+    ...state
+  }))
+
+  const handleDescriptionChange = changedItem => setState(state => ({
+    ...state
+  }))
+
 
   return (
     <div className="App">
@@ -29,16 +50,17 @@ const App = props => {
         onChange={handleStartTimeInputChange} 
       />
 
+      {state.items.map(item => (
+        <li key={item.id}>
+          <span>12:45</span>
+          <input type="number" onChange={handleDurationChange} value={item.durationInMinutes} />
+          <input type="text" onChange={handleDescriptionChange} value={item.description} />
+          <button onClick={() => handleRemoveItem(item)}>x</button>
+        </li>
+      ))}
+
     </div>
   )
 }
 
 export default hot(module)(App)
-
-/* <ItemRow>
-  <ItemReorderHandle />
-  <ItemTime />
-  <ItemDurationInput />
-  <ItemDescriptionInput />
-  <ItemDeleteBtn />
-</ItemRow> */
