@@ -8,49 +8,43 @@ import CurrentTime from "./components/CurrentTime"
 import StartTimeInput from "./components/StartTimeInput"
 
 const App = props => {
-  const [state, setState] = useState(() => ({
-    startTime: new Date().toTimeString().substring(0,5),
-    items: [
-      {
-        id: "sd",
-        durationInMinutes: 5,
-        description: "Welcome"
-      },
-      {
-        id: "kuu",
-        durationInMinutes: 10,
-        description: "☕️ Break"
-      }
-    ]
-  }))
+  const [startTime, setStartTime] = useState(() => new Date().toTimeString().substring(0,5))
+  const [items, setItems] = useState(() => ([
+    {
+      id: "sd",
+      durationInMinutes: 5,
+      description: "Welcome"
+    },
+    {
+      id: "kuu",
+      durationInMinutes: 10,
+      description: "☕️ Break"
+    },
+    {
+      id: "123",
+      durationInMinutes: 15,
+      description: "Ending"
+    }
+  ]))
 
-  const handleStartTimeInputChange = event => setState(state => ({...state, startTime: event.target.value }))
 
+  const handleStartTimeInputChange = event => setStartTime(event.target.value)
 
-  const handleRemoveItem = removedItem => setState(state => ({
-    ...state,
-    items: state.items.filter(item => item.description !== removedItem.description)
-  }))
-
-  const handleDurationChange = changedItem => setState(state => ({
-    ...state
-  }))
-
-  const handleDescriptionChange = changedItem => setState(state => ({
-    ...state
-  }))
-
+  const handleRemoveItem = removedItem => setItems(items.filter(item => item.id !== removedItem.id))
+  const handleDurationChange = changedItem => setItems()
+  const handleDescriptionChange = changedItem => setItems()
+  
 
   return (
     <div className="App">
       <CurrentTime />
   
       <StartTimeInput
-        startTime={state.startTime}
+        startTime={startTime}
         onChange={handleStartTimeInputChange} 
       />
 
-      {state.items.map(item => (
+      {items.map(item => (
         <li key={item.id}>
           <span>12:45</span>
           <input type="number" onChange={handleDurationChange} value={item.durationInMinutes} />
