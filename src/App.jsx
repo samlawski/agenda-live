@@ -55,13 +55,13 @@ const App = props => {
   const itemTime = currentItem => {
     const currentItemIndex = items.findIndex(item => item.id == currentItem.id)
     const itemsUpToTheCurrent = items.slice(0, currentItemIndex)
-    const sumOfMinutes = itemsUpToTheCurrent.reduce((currentSum, item) => currentSum + item.durationInMinutes, 0)
+    const sumOfMinutes = itemsUpToTheCurrent.reduce((currentSum, item) => currentSum + parseInt(item.durationInMinutes), 0)
 
     return _addMinutesToTime(startTime, sumOfMinutes)
   }
   const endTime = () => _addMinutesToTime(
     startTime,
-    items.reduce((currentSum, item) => currentSum + item.durationInMinutes, 0)
+    items.reduce((currentSum, item) => currentSum + parseInt(item.durationInMinutes), 0)
   )
 
 
