@@ -3,7 +3,7 @@ import React, {
 } from "react"
 
 export default props => {
-  const [time, setTime] = useState()
+  const [time, setTime] = useState("00:00")
 
   const regex24h = /^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/
   const errorTimeInvalid = !time || regex24h.test(time) ? null : `Please use the 24-hour time format HH:MM`
@@ -15,7 +15,7 @@ export default props => {
   return (
     <>
       <label htmlFor="startTimeInput">Start time: </label>
-      <input onChange={handleInputChange} id="startTimeInput" type="time" placeholder="HH:MM"></input>
+      <input onChange={handleInputChange} value={time} id="startTimeInput" type="time" placeholder="HH:MM"></input>
       <br />
       <small style={{color: "lightgrey" }}>{errorTimeInvalid}</small>
     </>
