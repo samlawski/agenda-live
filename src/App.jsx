@@ -19,7 +19,7 @@ const App = props => {
     {
       id: "1",
       durationInMinutes: 5,
-      description: "Welcome"
+      description: "Welcome 👋"
     }
   ]))
 
@@ -64,14 +64,17 @@ const App = props => {
         onChange={handleStartTimeInputChange} 
       />
 
-      <ReactSortable list={items} setList={setItems} tag="ul" handle=".Item__handle">
+      <ReactSortable list={items} setList={setItems} tag="ul" handle=".ItemRow__handle" className="ItemRows">
         {items.map(item => (
-          <li key={item.id}>
-            <span className="Item__handle">:: </span>
-            <span>{itemTime(item)}</span>
-            <input type="number" onChange={event => handleDurationChange(event.target.value, item)} value={item.durationInMinutes} />
-            <input type="text" onChange={event => handleDescriptionChange(event.target.value, item)} value={item.description} />
-            <button onClick={() => handleRemoveItem(item)}>x</button>
+          <li key={item.id} className="ItemRow">
+            <span className="ItemRow__handle">↕</span>
+            <strong className="ItemRow__time">{itemTime(item)}</strong>
+            <div className="ItemRow__input--duration">
+              <input type="number" onChange={event => handleDurationChange(event.target.value, item)} value={item.durationInMinutes} placeholder="0" />
+              '
+            </div>
+            <input type="text" onChange={event => handleDescriptionChange(event.target.value, item)} value={item.description} placeholder="..." />
+            <button onClick={() => handleRemoveItem(item)}>🗑</button>
           </li>
         ))}
       </ReactSortable>

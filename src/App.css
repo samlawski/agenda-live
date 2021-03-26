@@ -10,6 +10,59 @@
 }
 
 
-.Item__handle {
+
+.ItemRows {
+  padding: 0;
+  margin: 0;
+}
+
+.ItemRow {
+  list-style: none;
+
+  padding: 10px;
+  border-bottom: 1px solid lightgrey;
+
+  display: flex;
+  align-items: center;
+}
+
+.ItemRow__handle {
   cursor: move;
+  padding: 0 10px 0 5px;
+}
+
+.ItemRow__time {
+  margin-right: 5px;
+}
+
+.ItemRow input {
+  width: 100%;
+
+  background-color: transparent;
+  border: none;
+  outline: none;
+
+  text-overflow: ellipsis;
+}
+.ItemRow__input--duration {
+  flex-shrink: 0;
+  margin-right: 5px;
+}
+.ItemRow__input--duration input {
+  width: 43px;
+  /* Hide number input arrows: */
+  -moz-appearance: textfield;
+}
+/* Hide number input arrows: */
+.ItemRow__input--duration input::-webkit-outer-spin-button,
+.ItemRow__input--duration input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.ItemRow button {
+  border: none;
+  outline: none;
+  background-color: transparent;
+  cursor: pointer;
 }
