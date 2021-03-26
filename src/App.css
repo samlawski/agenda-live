@@ -8,3 +8,8 @@
   max-width: 500px;
   margin: auto;
 }
+
+
+.Item__handle {
+  cursor: move;
+}

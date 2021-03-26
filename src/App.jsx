@@ -3,6 +3,7 @@ import React, {
 } from "react"
 import {hot} from "react-hot-loader"
 import moment from "moment"
+import { ReactSortable } from "react-sortablejs"
 
 import "./App.css"
 import CurrentTime from "./components/CurrentTime"
@@ -63,14 +64,17 @@ const App = props => {
         onChange={handleStartTimeInputChange} 
       />
 
-      {items.map(item => (
-        <li key={item.id}>
-          <span>{itemTime(item)}</span>
-          <input type="number" onChange={event => handleDurationChange(event.target.value, item)} value={item.durationInMinutes} />
-          <input type="text" onChange={event => handleDescriptionChange(event.target.value, item)} value={item.description} />
-          <button onClick={() => handleRemoveItem(item)}>x</button>
-        </li>
-      ))}
+      <ReactSortable list={items} setList={setItems} handle=".Item__handle">
+        {items.map(item => (
+          <li key={item.id}>
+            <span className="Item__handle">:: </span>
+            <span>{itemTime(item)}</span>
+            <input type="number" onChange={event => handleDurationChange(event.target.value, item)} value={item.durationInMinutes} />
+            <input type="text" onChange={event => handleDescriptionChange(event.target.value, item)} value={item.description} />
+            <button onClick={() => handleRemoveItem(item)}>x</button>
+          </li>
+        ))}
+      </ReactSortable>
 
       <button onClick={handleAddItem}>add item</button>
 
