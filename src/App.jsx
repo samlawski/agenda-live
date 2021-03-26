@@ -17,8 +17,8 @@ const _addMinutesToTime = (timeAsString, minutes) => moment(timeAsString, "HH:mm
 
 const App = props => {
   const [currentTime, setCurrentTime] = useState(() => new Date())
-  const [startTime, setStartTime] = useState(() => new Date().toTimeString().substring(0,5))
-  const [items, setItems] = useState(() => ([
+  const [startTime, setStartTime] = useState(() => window.localStorage.getItem("startTime") || new Date().toTimeString().substring(0,5))
+  const [items, setItems] = useState(() => (JSON.parse(window.localStorage.getItem("items")) || [
     {
       id: "1",
       durationInMinutes: 5,
@@ -47,9 +47,15 @@ const App = props => {
       return item
     })
   )
-  
+
 
   // EFFECTS
+
+  // Save to localStorage
+  useEffect(() => {
+    window.localStorage.setItem("startTime", startTime)
+    window.localStorage.setItem("items", JSON.stringify(items))
+  }, [startTime, items])
 
   // Current Time
   useEffect(() => {
@@ -58,7 +64,7 @@ const App = props => {
       1000
     )
     return () => clearInterval(timer)
-  })
+  }, [currentTime])
 
   // Listen to global short cut for creating empty item:
   useKeyPressCtrlN(handleAddItem)
