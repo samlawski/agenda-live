@@ -2,7 +2,6 @@ import React, {
   useState,
   useEffect
 } from "react"
-import {hot} from "react-hot-loader"
 import moment from "moment"
 import { ReactSortable } from "react-sortablejs"
 
@@ -34,7 +33,7 @@ const App = props => {
   const handleRemoveItem = removedItem => setItems(items.filter(item => item.id !== removedItem.id))
   const handleDurationChange = (changedValue, changedItem) => setItems(
     items.map(item => {
-      const isChangedItem = item.id == changedItem.id
+      const isChangedItem = item.id === changedItem.id
       const isNoMoreThan4digits = changedValue.length <= 4
       if(isChangedItem && 
         isNoMoreThan4digits) item.durationInMinutes = changedValue
@@ -43,7 +42,7 @@ const App = props => {
   )
   const handleDescriptionChange = (changedValue, changedItem) => setItems(
     items.map(item => {
-      if(item.id == changedItem.id) item.description = changedValue
+      if(item.id === changedItem.id) item.description = changedValue
       return item
     })
   )
@@ -77,7 +76,7 @@ const App = props => {
   // VIEW METHODS
 
   const itemTime = currentItem => {
-    const currentItemIndex = items.findIndex(item => item.id == currentItem.id)
+    const currentItemIndex = items.findIndex(item => item.id === currentItem.id)
     const itemsUpToTheCurrent = items.slice(0, currentItemIndex)
     const sumOfMinutes = itemsUpToTheCurrent.reduce((currentSum, item) => currentSum + parseInt(item.durationInMinutes || 0), 0)
 
@@ -129,7 +128,7 @@ const App = props => {
 
       <button className="ItemAdd" onClick={handleAddItem}>Add item <small>(Ctrl + N)</small></button>
       <small className="ClearAllItems">
-        <a onClick={handleClearAll}>⚠️ Clear All</a>
+        <a href="/#" onClick={handleClearAll}>⚠️ Clear All</a>
       </small>
 
       <footer>
@@ -140,4 +139,4 @@ const App = props => {
   )
 }
 
-export default hot(module)(App)
+export default App

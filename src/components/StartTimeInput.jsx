@@ -1,7 +1,7 @@
 import React from "react"
 import "./StartTimeInput.css"
 
-export default props => {
+const StartTimeInput = props => {
   const regex24h = /^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/
   const isStartTimePresentAndInvalid = props.startTime && !regex24h.test(props.startTime)
   const errorTimeInvalid = isStartTimePresentAndInvalid ? (
@@ -25,3 +25,5 @@ export default props => {
     </div>
   )
 }
+
+export default StartTimeInput

@@ -2,7 +2,7 @@ import React from "react"
 
 import "./CurrentTime.css"
 
-export default props => {
+const CurrentTime = props => {
   const currentHour = parseInt(props.currentTime.toLocaleTimeString([], { hour: "2-digit", hour12: true}).split(" ")[0])
   const clockEmoji = [
     "🕛", "🕐", "🕑", "🕒", "🕓", "🕔", "🕕", "🕖", "🕗", "🕘", "🕙", "🕚", "🕛"
@@ -14,3 +14,5 @@ export default props => {
     </div>
   )
 }
+
+export default CurrentTime
