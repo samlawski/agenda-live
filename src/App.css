@@ -29,10 +29,13 @@
 .ItemRow__handle {
   cursor: move;
   padding: 0 10px 0 5px;
+  color: gray;
 }
 
 .ItemRow__time {
   margin-right: 5px;
+  flex-shrink: 0;
+  color: gray;
 }
 
 .ItemRow input {
@@ -67,4 +70,16 @@
   outline: none;
   background-color: transparent;
   cursor: pointer;
+}
+
+
+
+.ItemAdd {
+  cursor: pointer;
+  border: 1px solid grey;
+  border-radius: 5px;
+  margin: 5px 0;
+  padding: 5px;
+  background-color: transparent;
+  font-weight: 300;
 }

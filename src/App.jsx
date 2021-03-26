@@ -1,5 +1,6 @@
 import React, {
-  useState
+  useState,
+  useEffect
 } from "react"
 import {hot} from "react-hot-loader"
 import moment from "moment"
@@ -10,6 +11,7 @@ import CurrentTime from "./components/CurrentTime"
 import StartTimeInput from "./components/StartTimeInput"
 
 import generateRandomId from "./services/generateRandomId"
+import useKeyPressCtrlN from "./services/useKeyPressCtrlN"
 
 const _addMinutesToTime = (timeAsString, minutes) => moment(timeAsString, "HH:mm").add(minutes, "minutes").format("HH:mm")
 
@@ -22,7 +24,6 @@ const App = props => {
       description: "Welcome 👋"
     }
   ]))
-
 
   const handleStartTimeInputChange = event => setStartTime(event.target.value)
 
@@ -57,6 +58,8 @@ const App = props => {
     items.reduce((currentSum, item) => currentSum + parseInt(item.durationInMinutes || 0), 0)
   )
 
+  // Listen to global short cut for creating empty item:
+  useKeyPressCtrlN(handleAddItem)
 
   return (
     <div className="App">
@@ -76,13 +79,18 @@ const App = props => {
               <input type="number" onChange={event => handleDurationChange(event.target.value, item)} value={item.durationInMinutes} placeholder="0" />
               '
             </div>
-            <input type="text" onChange={event => handleDescriptionChange(event.target.value, item)} value={item.description} placeholder="..." />
+            <input 
+              type="text"
+              onChange={event => handleDescriptionChange(event.target.value, item)} 
+              value={item.description} 
+              placeholder="..." 
+            />
             <button onClick={() => handleRemoveItem(item)}>🗑</button>
           </li>
         ))}
       </ReactSortable>
 
-      <button onClick={handleAddItem}>add item</button>
+      <button class="ItemAdd" onClick={handleAddItem}>Add item <small>(Ctrl + N)</small></button>
 
       <div>
         End time: {endTime()}
