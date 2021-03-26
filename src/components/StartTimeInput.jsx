@@ -7,7 +7,7 @@ export default props => {
   const errorTimeInvalid = isStartTimePresentAndInvalid ? (
     <>
       <br />
-      <small style={{color: "lightgrey"}}>Please use the 24-hour time format HH:MM</small>
+      <small style={{color: "slateblue"}}>Please use the 24-hour time format HH:MM</small>
     </>
   ) : null
   

@@ -1,25 +1,11 @@
-import React, {
-  useState,
-  useEffect,
-} from "react"
+import React from "react"
 
 import "./CurrentTime.css"
 
 export default props => {
-  const [date, setDate] = useState(() => new Date())
-
-  useEffect(() => {
-    const timer = setInterval(
-      () => setDate(new Date()),
-      1000
-    )
-
-    return () => clearInterval(timer)
-  }, [date])
-
   return (
     <div className="CurrentTime">
-      <div className="CurrentTime__inner">{date.toLocaleTimeString()}</div>
+      <div className="CurrentTime__inner">{props.currentTime.toLocaleTimeString()}</div>
     </div>
   )
 }
