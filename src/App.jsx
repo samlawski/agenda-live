@@ -90,11 +90,11 @@ const App = props => {
         ))}
       </ReactSortable>
 
-      <button class="ItemAdd" onClick={handleAddItem}>Add item <small>(Ctrl + N)</small></button>
+      <button className="ItemAdd" onClick={handleAddItem}>Add item <small>(Ctrl + N)</small></button>
 
-      <div>
+      <footer>
         End time: {endTime()}
-      </div>
+      </footer>
 
     </div>
   )

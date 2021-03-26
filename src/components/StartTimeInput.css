@@ -1,0 +1,8 @@
+.StartTimeInput {
+  background-color: lightgray;
+  padding: 10px;
+}
+
+.StartTimeInput input {
+  background-color: whitesmoke;
+}

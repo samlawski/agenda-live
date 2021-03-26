@@ -1,4 +1,5 @@
 import React from "react"
+import "./StartTimeInput.css"
 
 export default props => {
   const regex24h = /^([0-9]|0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$/
@@ -11,7 +12,7 @@ export default props => {
   ) : null
   
   return (
-    <>
+    <div className="StartTimeInput">
       <label htmlFor="startTimeInput">Start time: </label>
       <input 
         id="startTimeInput" 
@@ -21,6 +22,6 @@ export default props => {
         value={props.startTime}
       />
       {errorTimeInvalid}
-    </>
+    </div>
   )
 }
