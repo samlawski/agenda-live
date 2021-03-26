@@ -17,5 +17,9 @@ export default props => {
     return () => clearInterval(timer)
   }, [date])
 
-  return <div className="CurrentTime">{date.toLocaleTimeString()}</div>
+  return (
+    <div className="CurrentTime">
+      <div className="CurrentTime__inner">{date.toLocaleTimeString()}</div>
+    </div>
+  )
 }

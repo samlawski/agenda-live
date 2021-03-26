@@ -64,7 +64,7 @@ const App = props => {
         onChange={handleStartTimeInputChange} 
       />
 
-      <ReactSortable list={items} setList={setItems} handle=".Item__handle">
+      <ReactSortable list={items} setList={setItems} tag="ul" handle=".Item__handle">
         {items.map(item => (
           <li key={item.id}>
             <span className="Item__handle">:: </span>
