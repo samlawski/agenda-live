@@ -30,7 +30,10 @@ const App = props => {
   const handleRemoveItem = removedItem => setItems(items.filter(item => item.id !== removedItem.id))
   const handleDurationChange = (changedValue, changedItem) => setItems(
     items.map(item => {
-      if(item.id == changedItem.id) item.durationInMinutes = changedValue
+      const isChangedItem = item.id == changedItem.id
+      const isNoMoreThan4digits = changedValue.length <= 4
+      if(isChangedItem && 
+        isNoMoreThan4digits) item.durationInMinutes = changedValue
       return item
     })
   )

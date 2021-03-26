@@ -50,6 +50,8 @@
 }
 .ItemRow__input--duration input {
   width: 43px;
+  text-align: right;
+
   /* Hide number input arrows: */
   -moz-appearance: textfield;
 }
