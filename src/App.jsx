@@ -47,6 +47,10 @@ const App = props => {
       return item
     })
   )
+  const handleClearAll = () => {
+    setItems([{id: generateRandomId(), durationInMinutes: "", description: ""}])
+    setStartTime(new Date().toTimeString().substring(0,5))
+  }
 
 
   // EFFECTS
@@ -124,6 +128,9 @@ const App = props => {
       </ReactSortable>
 
       <button className="ItemAdd" onClick={handleAddItem}>Add item <small>(Ctrl + N)</small></button>
+      <small className="ClearAllItems">
+        <a onClick={handleClearAll}>⚠️ Clear All</a>
+      </small>
 
       <footer>
         End time: {endTime()}

@@ -10,6 +10,11 @@ button {
   background-color: transparent;
 }
 
+a {
+  color: slateblue;
+  cursor: pointer;
+}
+
 .App {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 
@@ -95,7 +100,11 @@ button {
 .ItemAdd small {
   color: lightgray;
   font-weight: 700;
+}
 
+
+.ClearAllItems {
+  margin-left: 10px;
 }
 
 
